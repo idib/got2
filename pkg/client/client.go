@@ -5,8 +5,6 @@ import (
 	"io"
 	"net/http"
 	"time"
-
-	"github.com/idib/got2/internal/server"
 )
 
 // Client represents the HTTP client for the server
@@ -47,23 +45,28 @@ func (c *Client) Ping() (string, error) {
 	return string(body), nil
 }
 
-func (c *Client) HandleChekH(_ server.HandleChekHRequest) (server.HandleChekHResponse, error) {
+type HandleChekHRequest struct {
+}
+type HandleChekHResponse struct {
+}
+
+func (c *Client) HandleChekH(_ HandleChekHRequest) (HandleChekHResponse, error) {
 	url := fmt.Sprintf("%s/handleChekH", c.baseURL)
 
 	resp, err := c.httpClient.Get(url)
 	if err != nil {
-		return server.HandleChekHResponse{}, fmt.Errorf("failed to send ping request: %w", err)
+		return HandleChekHResponse{}, fmt.Errorf("failed to send ping request: %w", err)
 	}
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		return server.HandleChekHResponse{}, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
+		return HandleChekHResponse{}, fmt.Errorf("unexpected status code: %d", resp.StatusCode)
 	}
 
 	_, err = io.ReadAll(resp.Body)
 	if err != nil {
-		return server.HandleChekHResponse{}, fmt.Errorf("failed to read response body: %w", err)
+		return HandleChekHResponse{}, fmt.Errorf("failed to read response body: %w", err)
 	}
 
-	return server.HandleChekHResponse{}, nil
+	return HandleChekHResponse{}, nil
 }

@@ -1,12 +1,15 @@
 package server
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"time"
 
 	got1_client "github.com/idib/got1/pkg/client"
+
+	"github.com/idib/got2/pkg/client"
 )
 
 // Server represents the HTTP server
@@ -42,13 +45,14 @@ func (s *Server) handlePing(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("pong"))
 }
 
-type HandleChekHRequest struct {
-}
-type HandleChekHResponse struct {
-}
-
 // handlePing handles the /ping endpoint
 func (s *Server) handleChekH(w http.ResponseWriter, r *http.Request) {
+
+	ss := client.HandleChekHRequest{}
+
+	_ = json.NewDecoder(r.Body).Decode(&ss)
+
+	println(ss)
 
 	fmt.Println("Sending ping request to server...")
 
