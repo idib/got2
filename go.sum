@@ -1,2 +1,4 @@
+github.com/hjson/hjson-go/v4 v4.5.0 h1:ZHLiZ+HaGqPOtEe8T6qY8QHnoEsAeBv8wqxniQAp+CY=
+github.com/hjson/hjson-go/v4 v4.5.0/go.mod h1:4zx6c7Y0vWcm8IRyVoQJUHAPJLXLvbG6X8nk1RLigSo=
 github.com/idib/got1 v1.1.1 h1:U1JmiLnobtJ1NHL6NT3tASWvqfcUSV0XHdZZsgplXZM=
 github.com/idib/got1 v1.1.1/go.mod h1:OvMC0OSyxfhZPMiWmG0JMPIM+anTm6DrEShd3Oo9cQg=
